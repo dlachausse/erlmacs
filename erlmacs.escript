@@ -1,5 +1,11 @@
 #!/usr/bin/env escript
 %% -*- erlang -*-
+%%
+%% Copyright (c) 2023, Darren L. LaChausse
+%% ALL RIGHTS RESERVED
+%%
+%% Released under the MIT open source license, see LICENSE for details.
+%%
 
 main(_) ->
     % User's home directory
