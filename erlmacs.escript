@@ -15,7 +15,6 @@ gen_emacs_config() ->
     ErlangDotEl = filelib:wildcard(ErlRoot ++ "/lib/tools-*/emacs"),
     
     % Configuration to append to user's .emacs file...
-    Config = 
 	"\n;;;ERLMACS begin;;;\n"
 	"(setq load-path (cons \"" ++ ErlangDotEl ++ "\" load-path))\n"
 	"(setq erlang-root-dir \"" ++ ErlRoot ++ "\")\n"
