@@ -16,12 +16,12 @@ gen_emacs_config() ->
     
     % Configuration to append to user's .emacs file...
     Config = 
-"\n;;;ERLMACS begin;;;\n"
-"(setq load-path (cons \"" ++ ErlangDotEl ++ "\" load-path))\n"
-"(setq erlang-root-dir \"" ++ ErlRoot ++ "\")\n"
-"(setq exec-path (cons \"" ++ ErlRoot ++ "/bin\" exec-path))\n"
-"(require 'erlang-start)\n"
-";;;ERLMACS end;;;\n".
+	"\n;;;ERLMACS begin;;;\n"
+	"(setq load-path (cons \"" ++ ErlangDotEl ++ "\" load-path))\n"
+	"(setq erlang-root-dir \"" ++ ErlRoot ++ "\")\n"
+	"(setq exec-path (cons \"" ++ ErlRoot ++ "/bin\" exec-path))\n"
+	"(require 'erlang-start)\n"
+	";;;ERLMACS end;;;\n".
 
 % Get user's home directory
 home_dir() ->
