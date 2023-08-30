@@ -23,13 +23,14 @@ gen_emacs_config() ->
 "(require 'erlang-start)\n"
 ";;;ERLMACS end;;;\n".
 
+% Get user's home directory
+home_dir() ->
+    {ok, [[HomeDir]]} = init:get_argument(home),
+    HomeDir.
 
 main(_) ->
-    % User's home directory
-    {ok, [[HomeDir]]} = init:get_argument(home),
-
     % Location of the user's ".emacs" file
-    DotEmacs = HomeDir ++ "/.emacs",
+    DotEmacs = home_dir() ++ "/.emacs",
 
     Config = gen_emacs_config(),
     
