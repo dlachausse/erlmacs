@@ -28,9 +28,13 @@ home_dir() ->
     {ok, [[HomeDir]]} = init:get_argument(home),
     HomeDir.
 
+% Return the path to the .emacs config file
+get_dot_emacs() ->
+    home_dir() ++ "/.emacs".
+
 main(_) ->
     % Location of the user's ".emacs" file
-    DotEmacs = home_dir() ++ "/.emacs",
+    DotEmacs = get_dot_emacs(),
 
     Config = gen_emacs_config(),
     
