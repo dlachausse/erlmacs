@@ -17,4 +17,5 @@ _build/
 _checkouts/
 
 # emacs
-*.*~
+*~
+\#*\#
