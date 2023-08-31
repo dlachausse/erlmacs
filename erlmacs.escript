@@ -16,6 +16,12 @@ usage() ->
       "\tinstall\t\tAdd erlmacs configuration to .emacs file\n"
       "\tremove\t\tRemove erlmacs configuration from .emacs file\n\n").
 
+% Backup current .emacs file
+backup() ->
+    DotEmacs = get_dot_emacs(),
+    TempFile = DotEmacs ++ ".erlmacstmp",
+    file:copy(DotEmacs, TempFile).
+
 % Generate the emacs configuration file contents
 gen_emacs_config() ->
     % Erlang installation root directory
@@ -47,6 +53,9 @@ install() ->
     Config = gen_emacs_config(),
     
     io:format("Appending the following:~s\nto ~s...\n", [Config, DotEmacs]),
+
+    % Make a backup copy
+    backup(),
     
     % Append the configuration to the user's .emacs file...
     file:write_file(DotEmacs, Config, [append]),
@@ -55,11 +64,10 @@ install() ->
 
 remove() ->
     DotEmacs = get_dot_emacs(),
-    TempFile = DotEmacs ++ ".erlmacstmp",
     io:format("Removing erlmacs configuration from ~s...\n", [DotEmacs]),
 
     % Make a backup copy
-    file:copy(DotEmacs, TempFile),
+    backup(),
 
     % Read in the current configuration file
     {ok, ConfigIn} = file:read_file(DotEmacs),
