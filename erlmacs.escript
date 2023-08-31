@@ -7,6 +7,14 @@
 %% Released under the MIT open source license, see LICENSE for details.
 %%
 
+% Print usage information
+usage() ->
+    io:format(
+      "Example usage:\n"
+      "\terlmacs.escript [command]\n\n"
+      "where [command] is one of the following:\n"
+      "\tinstall\t\tAdd configuration to .emacs file\n\n").
+
 % Generate the emacs configuration file contents
 gen_emacs_config() ->
     % Erlang installation root directory
@@ -31,7 +39,7 @@ home_dir() ->
 get_dot_emacs() ->
     home_dir() ++ "/.emacs".
 
-main(_) ->
+install() ->
     % Location of the user's ".emacs" file
     DotEmacs = get_dot_emacs(),
 
@@ -43,3 +51,9 @@ main(_) ->
     file:write_file(DotEmacs, Config, [append]),
 
     io:format("Done.\n\n").
+
+main(["install"]) ->
+    install();
+
+main(_) ->
+    usage().
