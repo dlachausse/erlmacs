@@ -13,7 +13,8 @@ usage() ->
       "Example usage:\n"
       "\terlmacs.escript [command]\n\n"
       "where [command] is one of the following:\n"
-      "\tinstall\t\tAdd configuration to .emacs file\n\n").
+      "\tinstall\t\tAdd erlmacs configuration to .emacs file\n"
+      "\tremove\t\tRemove erlmacs configuration from .emacs file\n\n").
 
 % Generate the emacs configuration file contents
 gen_emacs_config() ->
@@ -52,8 +53,32 @@ install() ->
 
     io:format("Done.\n\n").
 
+remove() ->
+    DotEmacs = get_dot_emacs(),
+    TempFile = DotEmacs ++ ".erlmacstmp",
+    io:format("Removing erlmacs configuration from ~s...\n", [DotEmacs]),
+
+    % Make a backup copy
+    file:copy(DotEmacs, TempFile),
+
+    % Read in the current configuration file
+    {ok, ConfigIn} = file:read_file(DotEmacs),
+
+    % Remove erlmacs configuration with a regular expression
+    ConfigOut = re:replace(ConfigIn, 
+			   "(?s);;;ERLMACS begin;;;.*?;;;ERLMACS end;;;\\R",
+			   "", 
+			   [global, {return,list}]),
+
+    file:write_file(DotEmacs, ConfigOut),
+
+    io:format("Done.\n\n").
+
 main(["install"]) ->
     install();
+
+main(["remove"]) ->
+    remove();
 
 main(_) ->
     usage().
