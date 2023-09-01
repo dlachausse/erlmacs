@@ -19,8 +19,9 @@ usage() ->
 % Backup current .emacs file
 backup() ->
     DotEmacs = get_dot_emacs(),
-    TempFile = DotEmacs ++ ".erlmacstmp",
-    file:copy(DotEmacs, TempFile).
+    Backup = get_backup_file(),
+    io:format("Creating backup of ~s to ~s...\n", [DotEmacs, Backup]),
+    file:copy(DotEmacs, Backup).
 
 % Generate the emacs configuration file contents
 gen_emacs_config() ->
@@ -46,16 +47,20 @@ home_dir() ->
 get_dot_emacs() ->
     home_dir() ++ "/.emacs".
 
+% Return the path to backup the .emacs config file to
+get_backup_file() ->
+    get_dot_emacs() ++ ".erlmacsbak".
+
 install() ->
     % Location of the user's ".emacs" file
     DotEmacs = get_dot_emacs(),
 
     Config = gen_emacs_config(),
     
-    io:format("Appending the following:~s\nto ~s...\n", [Config, DotEmacs]),
-
     % Make a backup copy
     backup(),
+
+    io:format("Appending the following:~s\nto ~s...\n", [Config, DotEmacs]),
     
     % Append the configuration to the user's .emacs file...
     file:write_file(DotEmacs, Config, [append]),
@@ -64,10 +69,11 @@ install() ->
 
 remove() ->
     DotEmacs = get_dot_emacs(),
-    io:format("Removing erlmacs configuration from ~s...\n", [DotEmacs]),
 
     % Make a backup copy
     backup(),
+
+    io:format("Removing erlmacs configuration from ~s...\n", [DotEmacs]),
 
     % Read in the current configuration file
     {ok, ConfigIn} = file:read_file(DotEmacs),
