@@ -13,7 +13,9 @@ erlmacs automatically configures your .emacs file with support for the emacs mod
 - Otherwise execute it as follows: `escript erlmacs.escript [command]`
 
 ## Example usage
-`erlmacs.escript [command]`
+`./erlmacs.escript [command]`
+or
+`escript erlmacs.escript [command]`
 
 where [command] is one of the following:
 
