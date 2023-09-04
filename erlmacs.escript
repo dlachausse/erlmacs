@@ -57,9 +57,6 @@ install() ->
 
     Config = gen_emacs_config(),
     
-    % Make a backup copy
-    backup(),
-
     io:format("Appending the following:~s\nto ~s...\n", [Config, DotEmacs]),
     
     % Append the configuration to the user's .emacs file...
@@ -69,9 +66,6 @@ install() ->
 
 remove() ->
     DotEmacs = get_dot_emacs(),
-
-    % Make a backup copy
-    backup(),
 
     io:format("Removing erlmacs configuration from ~s...\n", [DotEmacs]),
 
@@ -89,9 +83,11 @@ remove() ->
     io:format("Done.\n\n").
 
 main(["install"]) ->
+    backup(),
     install();
 
 main(["remove"]) ->
+    backup(),
     remove();
 
 main(_) ->
