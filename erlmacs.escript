@@ -14,13 +14,14 @@ usage() ->
       "\terlmacs.escript [command]\n\n"
       "where [command] is one of the following:\n"
       "\tinstall\t\tAdd erlmacs configuration to .emacs file\n"
-      "\tremove\t\tRemove erlmacs configuration from .emacs file\n\n").
+      "\tremove\t\tRemove erlmacs configuration from .emacs file\n"
+      "\tupdate\t\tUpdate existing erlmacs configuration in .emacs file\n\n").
 
 % Backup current .emacs file
 backup() ->
     DotEmacs = get_dot_emacs(),
     Backup = get_backup_file(),
-    io:format("Creating backup of ~s to ~s...\n", [DotEmacs, Backup]),
+    io:format("Creating backup of ~s to ~s...\n\n", [DotEmacs, Backup]),
     file:copy(DotEmacs, Backup).
 
 % Generate the emacs configuration file contents
@@ -89,6 +90,12 @@ main(["install"]) ->
 main(["remove"]) ->
     backup(),
     remove();
+
+main(["update"]) ->
+    backup(),
+    % An update is equivalent to remove()ing and then install()ing
+    remove(),
+    install();
 
 main(_) ->
     usage().
