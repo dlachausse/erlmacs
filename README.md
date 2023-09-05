@@ -22,4 +22,5 @@ where [command] is one of the following:
 ```
 install     Add erlmacs configuration to .emacs file
 remove      Remove erlmacs configuration from .emacs file
+update      Update existing erlmacs configuration in .emacs file
 ```
