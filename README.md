@@ -9,7 +9,7 @@ erlmacs automatically configures your .emacs file with support for the emacs mod
 
 ## Installation
 - Download or save the `erlmacs.escript` file
-- If you're using a UNIX™-like system such as macOS, Linux, or BSD make this script executable: `chmod +x erlmacs.escript`
+- If you're using a UNIX-like system such as macOS, Linux, or BSD make this script executable: `chmod +x erlmacs.escript`
 - Otherwise execute it as follows: `escript erlmacs.escript [command]`
 
 ## Example usage
