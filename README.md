@@ -9,7 +9,7 @@ It frees you from having to locate the installation directory of Erlang/OTP and 
 - Emacs
 
 ## Installation
-- Download or save the `erlmacs.escript` file
+- Download or save the `erlmacs` file
 - If you're using a UNIX-like system such as macOS, Linux, or BSD make this script executable: `chmod +x erlmacs`
 - Otherwise execute it as follows: `escript erlmacs [command]`
 
