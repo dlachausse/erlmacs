@@ -10,13 +10,13 @@ It frees you from having to locate the installation directory of Erlang/OTP and 
 
 ## Installation
 - Download or save the `erlmacs.escript` file
-- If you're using a UNIX-like system such as macOS, Linux, or BSD make this script executable: `chmod +x erlmacs.escript`
-- Otherwise execute it as follows: `escript erlmacs.escript [command]`
+- If you're using a UNIX-like system such as macOS, Linux, or BSD make this script executable: `chmod +x erlmacs`
+- Otherwise execute it as follows: `escript erlmacs [command]`
 
 ## Example usage
-`./erlmacs.escript [command]`
+`./erlmacs [command]`
 or
-`escript erlmacs.escript [command]`
+`escript erlmacs [command]`
 
 where [command] is one of the following:
 
