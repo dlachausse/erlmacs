@@ -1,8 +1,8 @@
 # erlmacs
 Simple script to update your .emacs file for Erlang development
 
-erlmacs automatically configures and updates your .emacs file with support for the emacs mode that is included with Erlang/OTP.
-It frees you from having to locate the installation directory of Erlang/OTP and its bundled emacs mode.
+erlmacs automatically configures and updates your Emacs configuration file with support for the emacs mode that is included with Erlang/OTP.
+It frees you from having to locate the installation directory of Erlang/OTP and its bundled emacs mode.  erlmacs now automatically detects and supports ~/.emacs.el and ~/.emacs.d/init.el in addition to ~/.emacs as configuration file locations.
 
 ## Requirements
 - Erlang (with the escript command in the PATH)
