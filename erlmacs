@@ -46,6 +46,24 @@ home_dir() ->
 
 % Return the path to the .emacs config file
 get_dot_emacs() ->
+    % Check for a config file in the same order that Emacs does
+    get_dot_emacs([".emacs.el", ".emacs", ".emacs.d/init.el"]).
+
+get_dot_emacs([Path|Rest]) ->
+    % Check if the first file in the list exists and is a regular file
+    % if it isn't continue to the next file in the list and so on
+    X = filelib:is_regular(home_dir() ++ "/" ++ Path),
+
+    if
+	X ->
+	    home_dir() ++ "/" ++ Path;
+	true ->
+	    get_dot_emacs(Rest)
+	end;
+
+get_dot_emacs([]) ->
+    % If we got here we didn't find any existing configuration file
+    % so default to ~/.emacs
     home_dir() ++ "/.emacs".
 
 % Return the path to backup the .emacs config file to
