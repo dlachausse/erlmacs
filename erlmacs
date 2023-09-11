@@ -11,7 +11,7 @@
 usage() ->
     io:format(
       "Example usage:\n"
-      "\terlmacs.escript [command]\n\n"
+      "\terlmacs [command]\n\n"
       "where [command] is one of the following:\n"
       "\tinstall\t\tAdd erlmacs configuration to .emacs file\n"
       "\tremove\t\tRemove erlmacs configuration from .emacs file\n"
